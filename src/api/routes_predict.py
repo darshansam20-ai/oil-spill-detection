@@ -15,6 +15,8 @@ from typing import Any, Dict, Optional, Union
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile, status
 from fastapi.responses import JSONResponse
+import numpy as np
+from PIL import Image
 import torch
 
 from src.pipeline.end_to_end_pipeline import EndToEndPipeline, EndToEndIncidentReport
@@ -135,6 +137,21 @@ def debug_test_endpoint() -> Dict[str, Any]:
         ais_res = pipeline.ais_correlator.correlate(spill_lat=28.22, spill_lon=-89.48, detection_time="2018-12-19T06:15:22Z")
         steps["ais_time_s"] = round(time.time() - t_ais0, 3)
         steps["ais_vessels"] = ais_res.total_vessels_detected
+
+        # Test full end-to-end pipeline run on a sample test scene
+        t_pipe0 = time.time()
+        dbg_dir = Path(tempfile.mkdtemp(prefix="debug_predict_"))
+        dbg_img_path = dbg_dir / "test_sar.png"
+        sample_img = Image.fromarray((np.random.rand(512, 512) * 255).astype(np.uint8))
+        sample_img.save(dbg_img_path)
+        
+        report = pipeline.run(image_path=dbg_img_path, output_dir=dbg_dir / "output")
+        steps["full_pipeline_time_s"] = round(time.time() - t_pipe0, 3)
+        steps["report_spills"] = report.detection_result.spills_detected
+        steps["report_vessels"] = report.ais_result.total_vessels_detected
+        steps["annotated_img_exists"] = bool(report.annotated_image_path and os.path.exists(report.annotated_image_path))
+        steps["map_html_exists"] = bool(report.interactive_map_path and os.path.exists(report.interactive_map_path))
+        shutil.rmtree(dbg_dir, ignore_errors=True)
 
         steps["total_time_s"] = round(time.time() - t0, 3)
         return {"status": "success", "steps": steps}
