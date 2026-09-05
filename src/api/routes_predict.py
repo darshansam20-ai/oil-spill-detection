@@ -4,6 +4,7 @@ Handles satellite image upload, metadata parsing, and sequential execution:
   SAR Deep Learning Detector -> Adapter -> AIS Vessel Correlator -> Incident Report.
 """
 import base64
+import gc
 import json
 import os
 import shutil
@@ -252,8 +253,9 @@ async def run_prediction_pipeline(
             },
         )
     finally:
-        # Cleanup temporary files safely
+        # Cleanup temporary files safely and free memory
         try:
             shutil.rmtree(temp_dir, ignore_errors=True)
         except Exception:
             pass
+        gc.collect()

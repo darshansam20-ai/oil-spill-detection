@@ -9,11 +9,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 import json
 import numpy as np
-from PIL import Image
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
+from PIL import Image, ImageDraw, ImageFont
+import cv2
 
 from src.config.settings import settings
 from src.inference.predictor import OilSpillPredictor
@@ -486,97 +483,71 @@ class Sentinel1OilSpillDetector:
         output_path: Path,
     ):
         """
-        Draw clean, high-visibility bounding boxes and highlighting on the SAR scene.
+        Draw clean, high-visibility bounding boxes and highlighting on the SAR scene using PIL & OpenCV (low memory).
         """
         H, W = norm_img.shape[:2]
-        fig, ax = plt.subplots(figsize=(12, 10), dpi=150)
-        fig.patch.set_facecolor('#0b1120')  # Dark theme
-        ax.set_facecolor('#0b1120')
+        
+        # 1. Base grayscale SAR to 8-bit RGB
+        base_u8 = np.clip(norm_img * 255.0, 0, 255).astype(np.uint8)
+        base_rgb = cv2.cvtColor(base_u8, cv2.COLOR_GRAY2RGB)
 
-        # 1. Base grayscale SAR Image
-        ax.imshow(norm_img, cmap='gray', aspect='auto')
+        # 2. Semi-transparent Red Highlight Overlay on detected spill pixels
+        if np.any(binary_mask):
+            overlay = base_rgb.copy()
+            overlay[binary_mask == 1] = [239, 68, 68]  # Bright coral/red
+            cv2.addWeighted(overlay, 0.65, base_rgb, 0.35, 0, base_rgb)
 
-        # 2. Semi-transparent Oil Spill Highlight Mask (Translucent Red / Orange)
-        overlay = np.zeros((H, W, 4), dtype=np.float32)
-        overlay[binary_mask == 1] = [1.0, 0.15, 0.20, 0.55]
-        ax.imshow(overlay, aspect='auto')
+        # 3. Create PIL canvas with top header banner
+        header_h = 60
+        canvas = np.zeros((H + header_h, W, 3), dtype=np.uint8)
+        canvas[:header_h, :] = [11, 17, 32]  # Dark theme #0b1120
+        canvas[header_h:, :] = base_rgb
 
-        # 3. Draw Bounding Boxes, Centroids, and Badges for each Spill
-        for spill in detections:
-            min_r, min_c, max_r, max_c = spill.bbox_pixel
-            box_w = max_c - min_c
-            box_h = max_r - min_r
+        img_pil = Image.fromarray(canvas)
+        draw = ImageDraw.Draw(img_pil)
+        font = ImageFont.load_default()
 
-            # Neon Cyan/Green Bounding Box
-            rect = patches.Rectangle(
-                (min_c, min_r), box_w, box_h,
-                linewidth=2.2,
-                edgecolor='#00ffcc',
-                facecolor='none',
-                linestyle='-',
-            )
-            ax.add_patch(rect)
+        # 4. Header metadata banner
+        title_text = f"Sentinel-1 SAR Oil Spill Detection ({len(detections)} Spills Detected)"
+        draw.text((15, 10), title_text, fill=(255, 255, 255), font=font)
 
-            # Centroid Marker
-            ax.plot(
-                spill.centroid_pixel[1],
-                spill.centroid_pixel[0],
-                marker='+',
-                markersize=9,
-                color='#ff0055',
-                markeredgewidth=2.2,
-            )
-
-            # Spill Label Tag
-            if has_metadata and spill.latitude is not None:
-                tag = f"Spill #{spill.spill_id}\nConf: {spill.peak_confidence:.2f}\nLat: {spill.latitude:.4f}\nLon: {spill.longitude:.4f}"
-            else:
-                tag = f"Spill #{spill.spill_id}\nConf: {spill.peak_confidence:.2f}\nArea: {spill.pixel_area}px"
-
-            ax.text(
-                min_c,
-                max(0, min_r - 6),
-                tag,
-                color='black',
-                fontsize=7.5,
-                fontweight='bold',
-                bbox=dict(
-                    boxstyle='round,pad=0.3',
-                    facecolor='#00ffcc',
-                    alpha=0.92,
-                    edgecolor='none',
-                ),
-            )
-
-        ax.tick_params(colors='gray', labelsize=8)
-        for spine in ax.spines.values():
-            spine.set_color('#1e293b')
-
-        # 4. Title & Header Info Banner
         if has_metadata:
             meta_line = f"Date: {date_str or 'N/A'} | Time: {time_str or 'N/A'}"
             if aoi_dict:
-                meta_line += f" | AOI: [{aoi_dict['min_longitude']:.2f}, {aoi_dict['min_latitude']:.2f}, {aoi_dict['max_longitude']:.2f}, {aoi_dict['max_latitude']:.2f}]"
+                meta_line += f" | AOI: [{aoi_dict.get('min_longitude', 0):.2f}, {aoi_dict.get('min_latitude', 0):.2f}, {aoi_dict.get('max_longitude', 0):.2f}, {aoi_dict.get('max_latitude', 0):.2f}]"
             if total_area_km2 is not None:
                 meta_line += f" | Area: {total_area_km2:.3f} km²"
-
-            plt.title(
-                f"Sentinel-1 SAR Oil Spill Detection ({len(detections)} Spills Detected)\n{meta_line}",
-                color='white',
-                fontsize=11,
-                fontweight='bold',
-                pad=12,
-            )
+            draw.text((15, 32), meta_line, fill=(148, 163, 184), font=font)
         else:
-            plt.title(
-                f"Sentinel-1 SAR Oil Spill Detection ({len(detections)} Spills Detected) [Image Only]",
-                color='white',
-                fontsize=11,
-                fontweight='bold',
-                pad=12,
-            )
+            draw.text((15, 32), "[Image-Only Processing - Fallback Coordinates]", fill=(148, 163, 184), font=font)
 
-        plt.tight_layout()
-        plt.savefig(str(output_path), dpi=150, facecolor=fig.get_facecolor(), edgecolor='none', bbox_inches='tight')
-        plt.close(fig)
+        # 5. Draw Bounding Boxes, Centroids, and Tags for detections
+        for spill in detections:
+            min_r, min_c, max_r, max_c = spill.bbox_pixel
+            r0 = min_r + header_h
+            r1 = max_r + header_h
+            c0 = min_c
+            c1 = max_c
+
+            # Neon Cyan Bounding Box
+            draw.rectangle([c0, r0, c1, r1], outline=(0, 255, 204), width=2)
+
+            # Pink Centroid Crosshair
+            cr = int(spill.centroid_pixel[0]) + header_h
+            cc = int(spill.centroid_pixel[1])
+            draw.line([cc - 6, cr, cc + 6, cr], fill=(255, 0, 85), width=2)
+            draw.line([cc, cr - 6, cc, cr + 6], fill=(255, 0, 85), width=2)
+
+            # Label Pill Tag
+            if has_metadata and spill.latitude is not None:
+                tag = f"#{spill.spill_id} ({spill.peak_confidence:.2f})"
+            else:
+                tag = f"#{spill.spill_id} ({spill.peak_confidence:.2f})"
+
+            pill_w = len(tag) * 7 + 8
+            pill_y0 = max(header_h, r0 - 16)
+            draw.rectangle([c0, pill_y0, c0 + pill_w, pill_y0 + 14], fill=(0, 255, 204))
+            draw.text((c0 + 4, pill_y0 + 1), tag, fill=(0, 0, 0), font=font)
+
+        img_pil.save(output_path, format="PNG")
         logger.info(f"Annotated detection image saved to: {output_path}")

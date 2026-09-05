@@ -4,6 +4,12 @@ Provides RESTful APIs, OpenAPI documentation, and serves the interactive geospat
 """
 import os
 from pathlib import Path
+import torch
+try:
+    torch.set_num_threads(1)
+except Exception:
+    pass
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles

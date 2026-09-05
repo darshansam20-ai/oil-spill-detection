@@ -37,6 +37,12 @@ class OilSpillPredictor:
         overlap: int = 64,
         device: Optional[str] = None,
     ):
+        # Constrain PyTorch CPU threads to avoid memory fragmentation on container hosts
+        try:
+            torch.set_num_threads(1)
+        except Exception:
+            pass
+
         self.patch_size = patch_size
         self.overlap = overlap
         self.device = torch.device(device) if device else get_default_device()
@@ -79,7 +85,7 @@ class OilSpillPredictor:
             _MODEL_CACHE[cache_key] = self.model
             _VERSION_CACHE[cache_key] = self.model_version
 
-    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 4) -> List[np.ndarray]:
+    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 2) -> List[np.ndarray]:
         """
         Run batched neural network inference on extracted patches.
         Strictly inference-only: minimal memory allocation.
@@ -100,7 +106,7 @@ class OilSpillPredictor:
                 for j in range(probs_np.shape[0]):
                     predictions.append(probs_np[j])
 
-                del batch_tensor, probs, probs_np
+                del batch_tensor, probs, probs_np, batch_np
 
         return predictions
 
@@ -122,8 +128,8 @@ class OilSpillPredictor:
         raw_patches = [t.patch for t in tiles]
         logger.info(f"Extracted {len(tiles)} patches ({self.patch_size}x{self.patch_size}, overlap={self.overlap}) for inference.")
 
-        # 2. Run inference on patches
-        predicted_patches = self.predict_patches(raw_patches, batch_size=4)
+        # 2. Run inference on patches with batch_size=2 for low memory overhead
+        predicted_patches = self.predict_patches(raw_patches, batch_size=2)
         del raw_patches
         gc.collect()
 
