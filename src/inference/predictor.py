@@ -62,6 +62,8 @@ class OilSpillPredictor:
             self.model_version = _VERSION_CACHE.get(cache_key, CURRENT_MODEL_VERSION)
         else:
             self.model = ConvNeXtTinyUNet(in_channels=1, num_classes=1, pretrained=False)
+            if self.dtype == torch.bfloat16:
+                self.model = self.model.to(torch.bfloat16)
             self.model_version = CURRENT_MODEL_VERSION
 
             if self.checkpoint_path.exists():
@@ -82,9 +84,6 @@ class OilSpillPredictor:
             else:
                 logger.warning(f"Checkpoint not found at {self.checkpoint_path}. Initializing default model weights.")
 
-            # Convert to target precision and device
-            if self.dtype == torch.bfloat16:
-                self.model = self.model.to(torch.bfloat16)
             self.model.to(self.device)
             self.model.eval()
             _MODEL_CACHE[cache_key] = self.model
