@@ -67,7 +67,7 @@ class OilSpillPredictor:
             if self.checkpoint_path.exists():
                 logger.info(f"Loading trained weights from checkpoint: {self.checkpoint_path}")
                 try:
-                    checkpoint = torch.load(self.checkpoint_path, map_location="cpu", mmap=True)
+                    checkpoint = torch.load(self.checkpoint_path, map_location="cpu", weights_only=False)
                 except Exception:
                     checkpoint = torch.load(self.checkpoint_path, map_location="cpu")
                 
