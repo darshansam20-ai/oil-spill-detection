@@ -5,10 +5,14 @@
 
 FROM python:3.11-slim
 
-# Prevent interactive prompts during package installation
+# Prevent interactive prompts and optimize Linux memory footprint
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
+    MALLOC_ARENA_MAX=2 \
+    OMP_NUM_THREADS=1 \
+    OPENBLAS_NUM_THREADS=1 \
+    MKL_NUM_THREADS=1 \
     PORT=8000 \
     HOST=0.0.0.0 \
     DEVICE=cpu

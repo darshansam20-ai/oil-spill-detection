@@ -51,7 +51,7 @@ dashboard_static_dir.mkdir(parents=True, exist_ok=True)
 app.mount("/static", StaticFiles(directory=str(dashboard_static_dir)), name="static")
 
 
-@app.get("/", include_in_schema=False)
+@app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def serve_dashboard():
     """Serve the interactive geospatial dashboard index page."""
     index_path = dashboard_static_dir / "index.html"

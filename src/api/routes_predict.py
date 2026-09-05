@@ -27,31 +27,36 @@ router = APIRouter(tags=["Inference & Prediction"])
 ALLOWED_EXTENSIONS = {".tif", ".tiff", ".png", ".jpg", ".jpeg"}
 MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024  # 100 MB
 
-# Singleton pipeline instance loaded in-memory once on startup
+import threading
+
+# Thread-safe Singleton pipeline instance
 _pipeline_instance: Optional[EndToEndPipeline] = None
+_pipeline_lock = threading.Lock()
 
 
 def get_pipeline() -> EndToEndPipeline:
-    """Get or initialize singleton EndToEndPipeline in memory."""
+    """Get or initialize singleton EndToEndPipeline in memory (thread-safe)."""
     global _pipeline_instance
     if _pipeline_instance is None:
-        logger.info("Initializing in-memory EndToEndPipeline singleton...")
-        checkpoint_path = os.getenv("MODEL_CHECKPOINT_PATH", str(settings.paths.checkpoints_dir / "best_model.pt"))
-        threshold = float(os.getenv("DETECTION_THRESHOLD", "0.50"))
-        min_pixels = int(os.getenv("MIN_SPILL_PIXELS", "50"))
-        ais_radius = float(os.getenv("AIS_SEARCH_RADIUS_KM", "20.0"))
-        ais_token = os.getenv("GFW_API_TOKEN") or os.getenv("AIS_TOKEN") or None
-        device = os.getenv("DEVICE", None)
+        with _pipeline_lock:
+            if _pipeline_instance is None:
+                logger.info("Initializing in-memory EndToEndPipeline singleton...")
+                checkpoint_path = os.getenv("MODEL_CHECKPOINT_PATH", str(settings.paths.checkpoints_dir / "best_model.pt"))
+                threshold = float(os.getenv("DETECTION_THRESHOLD", "0.50"))
+                min_pixels = int(os.getenv("MIN_SPILL_PIXELS", "50"))
+                ais_radius = float(os.getenv("AIS_SEARCH_RADIUS_KM", "20.0"))
+                ais_token = os.getenv("GFW_API_TOKEN") or os.getenv("AIS_TOKEN") or None
+                device = os.getenv("DEVICE", "cpu")
 
-        _pipeline_instance = EndToEndPipeline(
-            checkpoint_path=checkpoint_path,
-            detection_threshold=threshold,
-            min_spill_pixels=min_pixels,
-            ais_token=ais_token,
-            ais_search_radius_km=ais_radius,
-            device=device,
-        )
-        logger.info("EndToEndPipeline singleton loaded successfully.")
+                _pipeline_instance = EndToEndPipeline(
+                    checkpoint_path=checkpoint_path,
+                    detection_threshold=threshold,
+                    min_spill_pixels=min_pixels,
+                    ais_token=ais_token,
+                    ais_search_radius_km=ais_radius,
+                    device=device,
+                )
+                logger.info("EndToEndPipeline singleton loaded successfully.")
     return _pipeline_instance
 
 
@@ -80,19 +85,21 @@ def read_text_file(file_path: Optional[Union[str, Path]]) -> Optional[str]:
         return None
 
 
-@router.get("/health")
-@router.get("/api/health")
+@router.api_route("/health", methods=["GET", "HEAD"])
+@router.api_route("/api/health", methods=["GET", "HEAD"])
 def health_check() -> Dict[str, Any]:
-    """Liveness & readiness probe for the ML service."""
-    pipeline = get_pipeline()
+    """Lightweight liveness & readiness probe for the ML service."""
+    ckpt_path = Path(os.getenv("MODEL_CHECKPOINT_PATH", str(settings.paths.checkpoints_dir / "best_model.pt")))
+    is_loaded = _pipeline_instance is not None
     return {
         "status": "online",
         "service": settings.app_name,
         "version": settings.app_version,
         "model_version": settings.model_version,
-        "device": str(pipeline.detector.predictor.device),
+        "device": str(_pipeline_instance.detector.predictor.device) if is_loaded else "cpu",
         "cuda_available": torch.cuda.is_available(),
-        "checkpoint_loaded": pipeline.detector.predictor.checkpoint_path.exists(),
+        "checkpoint_loaded": ckpt_path.exists(),
+        "pipeline_initialized": is_loaded,
     }
 
 
