@@ -24,14 +24,14 @@ app = FastAPI(
     description="Integrated Sentinel-1 SAR Deep Learning Oil Spill Detection & AIS Maritime Vessel Tracking Production System.",
 )
 
-# Enable CORS for web clients (including Vercel deployed frontend)
+# Enable unrestricted CORS for web clients (including Vercel deployed frontend)
 cors_origins_env = os.getenv("CORS_ORIGINS", "*")
 origins = [o.strip() for o in cors_origins_env.split(",")] if cors_origins_env != "*" else ["*"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
