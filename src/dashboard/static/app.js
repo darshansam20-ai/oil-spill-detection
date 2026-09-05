@@ -6,7 +6,8 @@
 (function () {
     "use strict";
 
-    // Resolve backend URL from environment config, localStorage, or same-origin default
+    // Resolve backend URL from environment config, localStorage, or Render production default
+    const DEFAULT_RENDER_URL = "https://oil-spill-detection-5k8z.onrender.com";
     const envConfigUrl = (typeof window !== "undefined" && window.__AEGIS_CONFIG__ && window.__AEGIS_CONFIG__.ML_SERVICE_URL && !window.__AEGIS_CONFIG__.ML_SERVICE_URL.startsWith("%"))
         ? window.__AEGIS_CONFIG__.ML_SERVICE_URL.trim()
         : "";
@@ -14,7 +15,7 @@
     // Application State
     const state = {
         selectedFile: null,
-        backendUrl: localStorage.getItem("aegis_backend_url") || envConfigUrl || "",
+        backendUrl: localStorage.getItem("aegis_backend_url") || envConfigUrl || DEFAULT_RENDER_URL,
         currentResult: null,
         isProcessing: false,
         timerInterval: null,
