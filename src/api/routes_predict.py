@@ -105,6 +105,43 @@ def health_check() -> Dict[str, Any]:
     }
 
 
+@router.api_route("/debug_test", methods=["GET", "HEAD"])
+def debug_test_endpoint() -> Dict[str, Any]:
+    """Diagnostic endpoint to verify all pipeline subsystems on container hosts."""
+    import time
+    import traceback
+    t0 = time.time()
+    steps: Dict[str, Any] = {}
+    try:
+        ckpt_path = Path(os.getenv("MODEL_CHECKPOINT_PATH", str(settings.paths.checkpoints_dir / "best_model.pt")))
+        steps["checkpoint_exists"] = ckpt_path.exists()
+        steps["checkpoint_size_mb"] = round(os.path.getsize(ckpt_path) / (1024 * 1024), 2) if ckpt_path.exists() else 0
+
+        t_p0 = time.time()
+        pipeline = get_pipeline()
+        steps["pipeline_init_time_s"] = round(time.time() - t_p0, 3)
+        steps["model_dtype"] = str(pipeline.detector.predictor.dtype)
+        steps["model_device"] = str(pipeline.detector.predictor.device)
+
+        t_f0 = time.time()
+        dummy_tensor = torch.zeros((1, 1, 256, 256), dtype=pipeline.detector.predictor.dtype, device=pipeline.detector.predictor.device)
+        with torch.inference_mode():
+            probs = pipeline.detector.predictor.model.predict_probability(dummy_tensor)
+        steps["forward_pass_time_s"] = round(time.time() - t_f0, 3)
+        steps["output_shape"] = list(probs.shape)
+        steps["output_mean"] = round(float(probs.mean().item()), 4)
+
+        t_ais0 = time.time()
+        ais_res = pipeline.ais_correlator.correlate(spill_lat=28.22, spill_lon=-89.48, detection_time="2018-12-19T06:15:22Z")
+        steps["ais_time_s"] = round(time.time() - t_ais0, 3)
+        steps["ais_vessels"] = ais_res.total_vessels_detected
+
+        steps["total_time_s"] = round(time.time() - t0, 3)
+        return {"status": "success", "steps": steps}
+    except Exception as e:
+        return {"status": "error", "error": str(e), "traceback": traceback.format_exc(), "steps": steps}
+
+
 @router.post("/predict")
 @router.post("/api/predict")
 async def run_prediction_pipeline(
