@@ -1,0 +1,35 @@
+{
+  "report_id": "RPT-2018_08_21_-20260830103924",
+  "generated_at": "2026-08-30T10:39:24.054730Z",
+  "audit_disclaimer": "MODEL-DETECTED POTENTIAL OIL SPILL. Generated automatically by SAR deep learning segmentation. For screening and investigative purposes only; not verified ground-truth attribution.",
+  "scene": {
+    "scene_id": "2018_08_21_",
+    "acquisition_time": "2018-12-07T12:00:00",
+    "polarization": "VV",
+    "orbit_direction": "ASCENDING",
+    "orbit_number": null,
+    "status": "DISCOVERED"
+  },
+  "preprocessing": {
+    "sigma0_min_db": -30.0,
+    "sigma0_max_db": 0.0,
+    "speckle_filter": "refined_lee",
+    "speckle_window_size": 7,
+    "normalization": "[0.0, 1.0]"
+  },
+  "model": {
+    "architecture": "ConvNeXt-Tiny + U-Net",
+    "model_version": "v1.0.0-convnext-unet",
+    "patch_size": 256,
+    "overlap": 64,
+    "segmentation_threshold": 0.5
+  },
+  "summary": {
+    "spills_detected": 0,
+    "total_area_km2": 0,
+    "max_confidence": 0.0,
+    "alerts_triggered": 0
+  },
+  "events": [],
+  "alerts": []
+}

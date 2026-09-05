@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: aegis-sar-ml-service
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: DEVICE
+        value: cpu
+      - key: DETECTION_THRESHOLD
+        value: "0.50"
+      - key: MIN_SPILL_PIXELS
+        value: "50"
+      - key: AIS_SEARCH_RADIUS_KM
+        value: "20.0"
+      - key: CORS_ORIGINS
+        value: "*"

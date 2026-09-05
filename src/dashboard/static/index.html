@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS-SAR | Sentinel-1 Oil Spill Detection & AIS Vessel Tracking System</title>
+    <meta name="description" content="Integrated Sentinel-1 SAR Deep Learning Oil Spill Detection (ConvNeXt-Tiny + U-Net) & AIS Maritime Vessel Tracking Intelligence Platform.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <!-- Runtime Environment Configuration -->
+    <script id="aegis-env-config">window.__AEGIS_CONFIG__ = { ML_SERVICE_URL: "" };</script>
+</head>
+<body class="dark-theme">
+    <div class="app-wrapper">
+        <!-- Top Navigation Header -->
+        <header class="top-navbar">
+            <div class="brand-group">
+                <div class="brand-badge">
+                    <span class="pulse-ring"></span>
+                    <span class="satellite-icon">🛰️</span>
+                </div>
+                <div class="brand-titles">
+                    <div class="title-row">
+                        <h1 class="main-title">AEGIS-SAR</h1>
+                        <span class="version-tag">PROD v1.0</span>
+                    </div>
+                    <p class="sub-title">Sentinel-1 Deep Learning SAR Oil Spill Detection & AIS Vessel Correlation</p>
+                </div>
+            </div>
+
+            <div class="header-status-group">
+                <div class="service-pill" id="service-status-pill" title="ML Service Connection Status">
+                    <span class="status-indicator-dot online" id="status-dot"></span>
+                    <span class="service-label">ML Service:</span>
+                    <span class="service-state" id="service-status-text">CONNECTING...</span>
+                </div>
+
+                <button class="btn btn-glass" id="btn-open-settings" title="Configure ML Backend Endpoint">
+                    ⚙️ <span class="btn-text">Endpoint Settings</span>
+                </button>
+                <a href="/docs" target="_blank" class="btn btn-glass" id="btn-api-docs">
+                    📖 <span class="btn-text">API Docs</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Pipeline Architecture Banner -->
+        <section class="pipeline-flow-banner">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-info">
+                    <span class="flow-title">🛰️ My Model (SAR AI)</span>
+                    <span class="flow-desc">ConvNeXt-Tiny + U-Net Segmentation</span>
+                </div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-info">
+                    <span class="flow-title">🔄 Pipeline Adapter</span>
+                    <span class="flow-desc">Epicenter Extraction & ISO Normalization</span>
+                </div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-info">
+                    <span class="flow-title">🚢 Friend's Model (AIS Radar)</span>
+                    <span class="flow-desc">Global Fishing Watch Proximity Tracking</span>
+                </div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step highlight">
+                <div class="flow-num">✓</div>
+                <div class="flow-info">
+                    <span class="flow-title">📊 Incident Intelligence</span>
+                    <span class="flow-desc">Ranked Suspects & Interactive Maps</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Grid -->
+        <main class="main-dashboard-grid">
+            <!-- Left Control & Upload Column -->
+            <section class="control-panel-card">
+                <div class="panel-header">
+                    <h2>📤 SAR Satellite Ingestion</h2>
+                    <span class="panel-subtitle">Upload Sentinel-1 SAR Geotiff or Image</span>
+                </div>
+
+                <form id="prediction-form" class="prediction-form">
+                    <!-- Dropzone -->
+                    <div class="dropzone-box" id="dropzone" tabindex="0">
+                        <input type="file" id="file-input" name="image" accept=".tif,.tiff,.png,.jpg,.jpeg" style="display: none;" />
+                        <div class="dropzone-inner" id="dropzone-prompt">
+                            <div class="dropzone-icon-circle">
+                                <span>📁</span>
+                            </div>
+                            <div class="dropzone-main-text">
+                                <strong id="file-display-name">Choose SAR Image or Drop Here</strong>
+                                <span class="dropzone-hint">Supports: .tif, .tiff, .png, .jpg (Max: 100 MB)</span>
+                            </div>
+                        </div>
+
+                        <!-- Selected File Preview Bar -->
+                        <div class="selected-file-bar" id="selected-file-bar" style="display: none;">
+                            <span class="file-icon">🛰️</span>
+                            <div class="file-meta">
+                                <span class="file-name" id="selected-file-name">filename.tif</span>
+                                <span class="file-size" id="selected-file-size">0.0 MB</span>
+                            </div>
+                            <button type="button" class="btn-remove-file" id="btn-remove-file" title="Remove file">&times;</button>
+                        </div>
+                    </div>
+
+                    <!-- Metadata Configuration Drawer -->
+                    <details class="metadata-accordion" id="metadata-accordion">
+                        <summary class="metadata-summary">
+                            <span>⚙️ Optional Spatial & Temporal Metadata</span>
+                            <span class="accordion-arrow">▼</span>
+                        </summary>
+                        
+                        <div class="metadata-inputs-grid">
+                            <div class="form-group">
+                                <label for="input-date">Acquisition Date</label>
+                                <input type="date" id="input-date" name="date" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-time">Acquisition Time (UTC)</label>
+                                <input type="text" id="input-time" name="time" placeholder="e.g. 06:15:22 UTC" />
+                            </div>
+
+                            <div class="form-group span-2">
+                                <label for="input-aoi">Area of Interest (AOI Bounding Box)</label>
+                                <input type="text" id="input-aoi" name="aoi" placeholder="min_lon, min_lat, max_lon, max_lat (e.g. -89.5,28.2,-88.7,28.9)" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-lat">Override Latitude</label>
+                                <input type="number" step="0.000001" id="input-lat" name="lat" placeholder="e.g. 28.2218" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-lon">Override Longitude</label>
+                                <input type="number" step="0.000001" id="input-lon" name="lon" placeholder="e.g. -89.4873" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="slider-threshold">Detection Threshold: <strong id="val-threshold">0.50</strong></label>
+                                <input type="range" id="slider-threshold" name="threshold" min="0.10" max="0.95" step="0.05" value="0.50" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="slider-radius">AIS Search Radius: <strong id="val-radius">20 km</strong></label>
+                                <input type="range" id="slider-radius" name="search_radius_km" min="5" max="100" step="5" value="20" />
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Quick Sample Loader -->
+                    <div class="sample-loader-box">
+                        <span class="sample-label">⚡ Quick Fill Demo Sample:</span>
+                        <button type="button" class="btn btn-xs btn-sample" id="btn-load-sample">
+                            Load Gulf of Mexico 2018 Scene Metadata
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-submit-pipeline" id="btn-submit">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">Run Dual-Model Detection Pipeline</span>
+                    </button>
+                </form>
+
+                <!-- Processing Tracker -->
+                <div class="processing-tracker-card" id="processing-tracker" style="display: none;">
+                    <div class="tracker-header">
+                        <div class="tracker-spinner"></div>
+                        <div class="tracker-title-box">
+                            <h4 id="tracker-current-step-title">Initializing Pipeline...</h4>
+                            <span id="tracker-timer">Elapsed: 0.0s</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                    </div>
+
+                    <div class="stages-stepper">
+                        <div class="stepper-step active" id="step-1">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Upload</span>
+                        </div>
+                        <div class="stepper-step" id="step-2">
+                            <span class="step-dot"></span>
+                            <span class="step-name">SAR AI Segmentation</span>
+                        </div>
+                        <div class="stepper-step" id="step-3">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Adapter Transformation</span>
+                        </div>
+                        <div class="stepper-step" id="step-4">
+                            <span class="step-dot"></span>
+                            <span class="step-name">AIS Vessel Correlation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Toast Card -->
+                <div class="error-alert-card" id="error-alert" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <strong id="error-title">Inference Error</strong>
+                        <p id="error-message">Details of the issue.</p>
+                    </div>
+                    <button class="btn-close-alert" id="btn-close-error">&times;</button>
+                </div>
+            </section>
+
+            <!-- Right Results Column -->
+            <section class="results-display-area" id="results-area">
+                <!-- Placeholder when no inference has run yet -->
+                <div class="placeholder-state" id="placeholder-state">
+                    <div class="placeholder-graphic">🛰️ ➔ 🚢</div>
+                    <h3>Awaiting Satellite Ingestion</h3>
+                    <p>Select or drag-and-drop a Sentinel-1 SAR scene on the left and run the pipeline to generate oil spill segmentations and AIS vessel correlation intelligence.</p>
+                    <div class="feature-badges">
+                        <span class="feature-chip">✓ ConvNeXt-Tiny U-Net</span>
+                        <span class="feature-chip">✓ Automated Pipeline Adapter</span>
+                        <span class="feature-chip">✓ AIS Maritime Vessel Tracking</span>
+                        <span class="feature-chip">✓ Interactive Georeferenced Visuals</span>
+                    </div>
+                </div>
+
+                <!-- Active Results Container (shown after inference) -->
+                <div class="active-results-container" id="active-results-container" style="display: none;">
+                    <!-- Top Metrics Ribbon -->
+                    <div class="metrics-ribbon">
+                        <div class="kpi-card">
+                            <span class="kpi-label">Spills Detected</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-val highlight-red" id="kpi-spills-count">0</span>
+                                <span class="kpi-unit">clusters</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <span class="kpi-label">Total Spill Area</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-val" id="kpi-spill-area">0.00</span>
+                                <span class="kpi-unit" id="kpi-area-unit">sq km</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <span class="kpi-label">Target Epicenter</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-val mono" id="kpi-epicenter">0.00, 0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <span class="kpi-label">AIS Correlated Vessels</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-val highlight-cyan" id="kpi-vessels-count">0</span>
+                                <span class="kpi-unit">vessels</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card suspect-kpi">
+                            <span class="kpi-label">Primary Suspect</span>
+                            <div class="kpi-value-row">
+                                <span class="kpi-val highlight-amber" id="kpi-top-suspect">None</span>
+                            </div>
+                            <span class="kpi-sub" id="kpi-suspect-distance">-- km away</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Split Interactive Viewers -->
+                    <div class="dual-viewer-grid">
+                        <!-- Left Pane: Annotated SAR Detection Viewer -->
+                        <div class="viewer-card">
+                            <div class="viewer-card-header">
+                                <div class="header-tag">
+                                    <span class="dot red"></span>
+                                    <h3>🛰️ SAR Oil Spill Detection</h3>
+                                </div>
+                                <div class="viewer-actions">
+                                    <button class="btn btn-xs btn-outline" id="btn-expand-sar" title="View Fullscreen">🔍 Full Image</button>
+                                </div>
+                            </div>
+                            <div class="viewer-card-body image-viewer-body" id="sar-image-container">
+                                <img id="annotated-sar-img" class="sar-result-img" alt="SAR Oil Spill Detection" src="" />
+                                <div class="image-overlay-info" id="sar-overlay-info">
+                                    <span id="sar-dimensions-badge">0 x 0 px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Pane: Interactive AIS Maritime Vessel Radar Map -->
+                        <div class="viewer-card">
+                            <div class="viewer-card-header">
+                                <div class="header-tag">
+                                    <span class="dot cyan"></span>
+                                    <h3>🚢 Interactive AIS Vessel Radar</h3>
+                                </div>
+                                <div class="viewer-actions">
+                                    <button class="btn btn-xs btn-outline" id="btn-open-map-tab" title="Open Map in New Tab">↗️ Full Map</button>
+                                </div>
+                            </div>
+                            <div class="viewer-card-body map-viewer-body">
+                                <iframe id="ais-map-iframe" class="ais-map-frame" src="about:blank" title="Interactive AIS Maritime Map"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suspect Vessels Table Card -->
+                    <div class="vessels-table-card">
+                        <div class="table-card-header">
+                            <div class="header-tag">
+                                <span class="dot amber"></span>
+                                <h3>📋 Ranked AIS Suspect Vessels (Point of Closest Approach)</h3>
+                            </div>
+                            <span class="table-count-tag" id="table-vessels-count">0 vessels listed</span>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="vessels-table" id="vessels-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Ship Name</th>
+                                        <th>MMSI</th>
+                                        <th>Vessel Type</th>
+                                        <th>Min Distance (km)</th>
+                                        <th>Track Points</th>
+                                        <th>Attribution Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vessels-table-body">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Artifacts & Download Toolbar -->
+                    <div class="export-toolbar-card">
+                        <div class="export-left">
+                            <span class="export-title">📥 Export Incident Dossier:</span>
+                        </div>
+                        <div class="export-buttons">
+                            <button class="btn btn-sm btn-export" id="btn-export-json">
+                                📄 Full Incident Report (.json)
+                            </button>
+                            <button class="btn btn-sm btn-export" id="btn-export-csv">
+                                📊 Vessel Rankings (.csv)
+                            </button>
+                            <button class="btn btn-sm btn-export" id="btn-export-png">
+                                🖼️ Annotated SAR Image (.png)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Endpoint Settings Modal -->
+    <div class="modal-backdrop" id="settings-modal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>⚙️ ML Service Backend Endpoint Configuration</h3>
+                <button class="btn-close-modal" id="btn-close-settings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Specify the URL of the dedicated ML Inference Service (FastAPI container on Hugging Face Spaces, Render, or Localhost).
+                </p>
+                <div class="form-group">
+                    <label for="input-backend-url">ML Service Base URL / Predict Endpoint</label>
+                    <input type="url" id="input-backend-url" placeholder="e.g. https://my-ml-service.hf.space or http://localhost:8000" />
+                    <span class="field-hint">Leave blank or set to <code>/api/predict</code> for same-origin backend.</span>
+                </div>
+                
+                <div class="connection-test-result" id="connection-test-result" style="display: none;">
+                    <span id="test-result-text">Testing connection...</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn-test-connection">⚡ Test Connection</button>
+                <button type="button" class="btn btn-primary" id="btn-save-settings">Save & Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Image Modal -->
+    <div class="modal-backdrop" id="image-modal" style="display: none;">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-header">
+                <h3>🛰️ High-Resolution Annotated SAR Detection</h3>
+                <button class="btn-close-modal" id="btn-close-image-modal">&times;</button>
+            </div>
+            <div class="modal-body modal-image-body">
+                <img id="modal-full-img" src="" alt="Full SAR Detection" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

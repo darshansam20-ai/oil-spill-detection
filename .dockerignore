@@ -1,0 +1,19 @@
+# Docker Ignore List
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.vscode/
+.tools/
+.git/
+.gitignore
+data/extracted/
+data/raw/
+data/processed/
+output/
+*.zip
+*.tar.gz
+*.log
+ais_module_extracted/

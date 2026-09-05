@@ -1,0 +1,2034 @@
+{
+  "report_id": "RPT-MY_MANUAL_TEST_01-20260830112226",
+  "generated_at": "2026-08-30T11:22:26.557313Z",
+  "audit_disclaimer": "MODEL-DETECTED POTENTIAL OIL SPILL. Generated automatically by SAR deep learning segmentation. For screening and investigative purposes only; not verified ground-truth attribution.",
+  "scene": {
+    "scene_id": "MY_MANUAL_TEST_01",
+    "acquisition_time": "2026-08-30T11:22:18.924454",
+    "polarization": "VV",
+    "orbit_direction": "ASCENDING",
+    "orbit_number": null,
+    "status": "DISCOVERED"
+  },
+  "preprocessing": {
+    "sigma0_min_db": -30.0,
+    "sigma0_max_db": 0.0,
+    "speckle_filter": "refined_lee",
+    "speckle_window_size": 7,
+    "normalization": "[0.0, 1.0]"
+  },
+  "model": {
+    "architecture": "ConvNeXt-Tiny + U-Net",
+    "model_version": "v1.0.0-convnext-unet",
+    "patch_size": 256,
+    "overlap": 64,
+    "segmentation_threshold": 0.5
+  },
+  "summary": {
+    "spills_detected": 111,
+    "total_area_km2": 0.0,
+    "max_confidence": 0.5258,
+    "alerts_triggered": 0
+  },
+  "events": [
+    {
+      "event_id": "OSE-20260830-38E385",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3214267.728561,
+        291036.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-5F57F9",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3214267.728561,
+        292956.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-DC24DD",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3214267.728561,
+        294876.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-94F8DB",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3214267.728561,
+        296796.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-FBE861",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3214267.728561,
+        298716.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-33B08E",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3214267.728561,
+        300636.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-FE9637",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3214267.728561,
+        302556.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-2A56C5",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3214267.728561,
+        304476.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-B9C782",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3214267.728561,
+        306396.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-97C772",
+      "centroid": {
+        "lat": 3214405.215362,
+        "lon": 310036.160232
+      },
+      "bounding_box": [
+        309816.983885,
+        3214267.728561,
+        310236.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5027,
+      "peak_confidence": 0.5054,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-F70394",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3214267.728561,
+        312156.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-037773",
+      "centroid": {
+        "lat": 3214405.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3214267.728561,
+        314076.983885,
+        3214537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-70A908",
+      "centroid": {
+        "lat": 3214410.243531,
+        "lon": 308039.259334
+      },
+      "bounding_box": [
+        307936.983885,
+        3214367.728561,
+        308156.983885,
+        3214457.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5003,
+      "peak_confidence": 0.5007,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-6585D9",
+      "centroid": {
+        "lat": 3213321.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3213267.728561,
+        289386.983885,
+        3213377.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-9DDADD",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3212347.728561,
+        291036.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-7EFB21",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3212347.728561,
+        292956.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-0CA7C4",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3212347.728561,
+        294876.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-8956F8",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3212347.728561,
+        296796.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-2E37FB",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3212347.728561,
+        298716.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-F6B5CB",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3212347.728561,
+        300636.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-D5F54B",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3212347.728561,
+        302556.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-75918A",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3212347.728561,
+        304476.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-C2952C",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3212347.728561,
+        306396.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-D2D342",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3212347.728561,
+        308316.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-9F10C2",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3212347.728561,
+        310236.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-178E01",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3212347.728561,
+        312156.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-9D4676",
+      "centroid": {
+        "lat": 3212485.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3212347.728561,
+        314076.983885,
+        3212617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-3DD901",
+      "centroid": {
+        "lat": 3211401.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3211347.728561,
+        289386.983885,
+        3211457.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-8FC968",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3210427.728561,
+        291036.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-D6B307",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3210427.728561,
+        292956.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-85EBB4",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3210427.728561,
+        294876.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-49B61A",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3210427.728561,
+        296796.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-642CBF",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3210427.728561,
+        298716.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-FDC051",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3210427.728561,
+        300636.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-C934B3",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3210427.728561,
+        302556.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-40C520",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3210427.728561,
+        304476.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-82496A",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3210427.728561,
+        306396.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-5F4862",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3210427.728561,
+        308316.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-07D216",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3210427.728561,
+        310236.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-FFE746",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3210427.728561,
+        312156.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-C5C04A",
+      "centroid": {
+        "lat": 3210565.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3210427.728561,
+        314076.983885,
+        3210697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-B0F46F",
+      "centroid": {
+        "lat": 3209481.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3209427.728561,
+        289386.983885,
+        3209537.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-BF8ABE",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3208507.728561,
+        291036.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-032E00",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3208507.728561,
+        292956.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-560CA4",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3208507.728561,
+        294876.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-344E30",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3208507.728561,
+        296796.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-717EF9",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3208507.728561,
+        298716.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-CE2E63",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3208507.728561,
+        300636.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-17165B",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3208507.728561,
+        302556.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-E95676",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3208507.728561,
+        304476.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-3E49EB",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3208507.728561,
+        306396.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-71E4C4",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3208507.728561,
+        308316.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-FB5054",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3208507.728561,
+        310236.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-6229DE",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3208507.728561,
+        312156.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-7CF926",
+      "centroid": {
+        "lat": 3208645.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3208507.728561,
+        314076.983885,
+        3208777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-F0F66D",
+      "centroid": {
+        "lat": 3207561.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3207507.728561,
+        289386.983885,
+        3207617.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-8F79E6",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3206587.728561,
+        291036.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-240703",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3206587.728561,
+        292956.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-C0E017",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3206587.728561,
+        294876.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-D55BFF",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3206587.728561,
+        296796.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-525914",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3206587.728561,
+        298716.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1F36D8",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3206587.728561,
+        300636.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-8FBEBC",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3206587.728561,
+        302556.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-3DFEC5",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3206587.728561,
+        304476.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-0DFD0E",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3206587.728561,
+        306396.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-845D3B",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3206587.728561,
+        308316.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1591CF",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3206587.728561,
+        310236.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-7847BD",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3206587.728561,
+        312156.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1DD961",
+      "centroid": {
+        "lat": 3206725.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3206587.728561,
+        314076.983885,
+        3206857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-442263",
+      "centroid": {
+        "lat": 3205641.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3205587.728561,
+        289386.983885,
+        3205697.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-EDA71E",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3204667.728561,
+        291036.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-55BB2B",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3204667.728561,
+        292956.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-4D2FA4",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3204667.728561,
+        294876.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-A5731B",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3204667.728561,
+        296796.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-7802DD",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3204667.728561,
+        298716.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-4D5A0F",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3204667.728561,
+        300636.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-ACA0A8",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3204667.728561,
+        302556.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-83110B",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3204667.728561,
+        304476.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-3912A4",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3204667.728561,
+        306396.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-83E83D",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3204667.728561,
+        308316.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-11275F",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3204667.728561,
+        310236.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-5A5254",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3204667.728561,
+        312156.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-E3A1A9",
+      "centroid": {
+        "lat": 3204805.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3204667.728561,
+        314076.983885,
+        3204937.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1A03C4",
+      "centroid": {
+        "lat": 3203721.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3203667.728561,
+        289386.983885,
+        3203777.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-DD7663",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3202747.728561,
+        291036.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-8C0FD0",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3202747.728561,
+        292956.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-996B98",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3202747.728561,
+        294876.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-EEB461",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3202747.728561,
+        296796.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1F1D4D",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3202747.728561,
+        298716.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-53C923",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3202747.728561,
+        300636.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-4621EF",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3202747.728561,
+        302556.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-02EA6D",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3202747.728561,
+        304476.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-B71D2E",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3202747.728561,
+        306396.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-89CFF1",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3202747.728561,
+        310236.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-48126F",
+      "centroid": {
+        "lat": 3202885.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3202747.728561,
+        312156.983885,
+        3203017.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-79382C",
+      "centroid": {
+        "lat": 3202837.051929,
+        "lon": 308120.429991
+      },
+      "bounding_box": [
+        307896.983885,
+        3202617.728561,
+        308336.983885,
+        3203007.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5042,
+      "peak_confidence": 0.5085,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-11F105",
+      "centroid": {
+        "lat": 3202828.966185,
+        "lon": 313886.191806
+      },
+      "bounding_box": [
+        313756.983885,
+        3202737.728561,
+        314006.983885,
+        3202917.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5014,
+      "peak_confidence": 0.5028,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-BE6B02",
+      "centroid": {
+        "lat": 3201801.981435,
+        "lon": 289335.144805
+      },
+      "bounding_box": [
+        289286.983885,
+        3201747.728561,
+        289386.983885,
+        3201857.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5258,
+      "peak_confidence": 0.5507,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-A749F6",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 290836.274073
+      },
+      "bounding_box": [
+        290616.983885,
+        3200827.728561,
+        291036.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-F9149A",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 292756.274073
+      },
+      "bounding_box": [
+        292536.983885,
+        3200827.728561,
+        292956.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-74106F",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 294676.274073
+      },
+      "bounding_box": [
+        294456.983885,
+        3200827.728561,
+        294876.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-9DFB81",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 296596.274073
+      },
+      "bounding_box": [
+        296376.983885,
+        3200827.728561,
+        296796.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-02887B",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 298516.274073
+      },
+      "bounding_box": [
+        298296.983885,
+        3200827.728561,
+        298716.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-A9FBA2",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 300436.274073
+      },
+      "bounding_box": [
+        300216.983885,
+        3200827.728561,
+        300636.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-9B585B",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 302356.274073
+      },
+      "bounding_box": [
+        302136.983885,
+        3200827.728561,
+        302556.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-6FB5AF",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 304276.274073
+      },
+      "bounding_box": [
+        304056.983885,
+        3200827.728561,
+        304476.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-5FC263",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 306196.274073
+      },
+      "bounding_box": [
+        305976.983885,
+        3200827.728561,
+        306396.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-2D8F5D",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 308116.274073
+      },
+      "bounding_box": [
+        307896.983885,
+        3200827.728561,
+        308316.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-DA1857",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 310036.274073
+      },
+      "bounding_box": [
+        309816.983885,
+        3200827.728561,
+        310236.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-1E792E",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 311956.274073
+      },
+      "bounding_box": [
+        311736.983885,
+        3200827.728561,
+        312156.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    },
+    {
+      "event_id": "OSE-20260830-F9457E",
+      "centroid": {
+        "lat": 3200965.004135,
+        "lon": 313876.274073
+      },
+      "bounding_box": [
+        313656.983885,
+        3200827.728561,
+        314076.983885,
+        3201097.728561
+      ],
+      "area_km2": 0.0,
+      "area_m2": 0.0,
+      "confidence": 0.5028,
+      "peak_confidence": 0.5055,
+      "status": "NEW"
+    }
+  ],
+  "alerts": []
+}

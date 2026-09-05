@@ -1,0 +1,30 @@
+{
+  "model_version": "v1.0.0-convnext-unet",
+  "architecture": "ConvNeXt-Tiny + U-Net",
+  "best_epoch": 3,
+  "val_loss": 0.7100427225232124,
+  "metrics": {
+    "dice_score": 0.0275,
+    "iou": 0.0139,
+    "precision": 0.0227,
+    "recall": 0.0348,
+    "specificity": 0.9791
+  },
+  "created_at": "2026-08-30T10:43:59Z",
+  "preprocessing": {
+    "sigma0_min_db": -30.0,
+    "sigma0_max_db": 0.0,
+    "speckle_filter_name": "refined_lee",
+    "speckle_window_size": 7,
+    "speckle_num_looks": 1.0,
+    "apply_db_conversion": true,
+    "normalize_min": 0.0,
+    "normalize_max": 1.0
+  },
+  "training_config": {
+    "epochs": 8,
+    "batch_size": 8,
+    "learning_rate": 0.0002,
+    "patch_size": 256
+  }
+}

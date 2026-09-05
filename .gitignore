@@ -1,0 +1,27 @@
+# Environments & Python Caches
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test & IDE artifacts
+.pytest_cache/
+.vscode/
+.tools/
+*.log
+
+# Runtime Output Directories
+output/
+data/extracted/
+data/raw/
+data/processed/
+data/outputs/
+data/oil_spill_system.db
+
+# Large Archives & Temp Extracted
+*.zip
+*.tar.gz
+ais_module_extracted/

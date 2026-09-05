@@ -1,0 +1,12 @@
+{
+  "satellite": "Sentinel-1A",
+  "sensor_mode": "IW",
+  "polarization": "VV",
+  "date": "2018-12-19",
+  "time": "06:15:22 UTC",
+  "datetime": "2018-12-19T06:15:22Z",
+  "aoi": [-89.50, 28.20, -88.70, 28.90],
+  "crs": "EPSG:4326",
+  "region_name": "Gulf of Mexico - Deepwater Sector",
+  "resolution_meters": 10.0
+}

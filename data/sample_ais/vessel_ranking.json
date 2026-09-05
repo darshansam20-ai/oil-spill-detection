@@ -1,0 +1,677 @@
+[
+  {
+    "vesselId": "1b6e1fa7e-ee30-56b7-aabb-88e321ae1f4f",
+    "mmsi": "419099300",
+    "shipName": "AMBUJA MUKUND",
+    "minimum_distance_km": 1.1119492664458719,
+    "closest_lat": 18.91,
+    "closest_lon": 72.5,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "1739f3efe-e0a7-e8f2-0885-17ca95788e80",
+    "mmsi": "419001356",
+    "shipName": "AMNS TUFMAX",
+    "minimum_distance_km": 2.1036446913135527,
+    "closest_lat": 18.9,
+    "closest_lon": 72.5199966430664,
+    "historical_position_count": 7
+  },
+  {
+    "vesselId": "a2fb686f4-4304-09ae-5b1e-d16a6b67725e",
+    "mmsi": "419001837",
+    "shipName": "SHAURYA",
+    "minimum_distance_km": 2.4602909530523767,
+    "closest_lat": 18.88,
+    "closest_lon": 72.51000213623047,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "a7ca5eb2e-e0b4-0d63-fc03-37a271e021a0",
+    "mmsi": "538006083",
+    "shipName": "DIMIJOHN A",
+    "minimum_distance_km": 3.061129956959242,
+    "closest_lat": 18.92,
+    "closest_lon": 72.5199966430664,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "2e9705d42-2d9d-26b4-1c19-fada3f3fcb6b",
+    "mmsi": "419714000",
+    "shipName": "GREATSHIP AMRITA",
+    "minimum_distance_km": 3.0611299569601615,
+    "closest_lat": 18.92,
+    "closest_lon": 72.4800033569336,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "f17cf16eb-b9f0-c6aa-b43b-907bd973f7e8",
+    "mmsi": "574004700",
+    "shipName": "HAI DUONG 11",
+    "minimum_distance_km": 4.447797065782073,
+    "closest_lat": 18.86,
+    "closest_lon": 72.5,
+    "historical_position_count": 6
+  },
+  {
+    "vesselId": "abcd7652c-c678-949d-8f7f-5a56a3eb09ea",
+    "mmsi": "538009278",
+    "shipName": "AKTI",
+    "minimum_distance_km": 4.57059490801294,
+    "closest_lat": 18.86,
+    "closest_lon": 72.48999786376953,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "ff8ef9c2a-a4e5-496b-a787-72ff42e1f7de",
+    "mmsi": "563205300",
+    "shipName": "MAC TOKYO",
+    "minimum_distance_km": 4.592294637033081,
+    "closest_lat": 18.87,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "7fe7ce818-87d5-3f3d-664a-b7720e2c86c1",
+    "mmsi": "636018222",
+    "shipName": "DELPHINUS C",
+    "minimum_distance_km": 5.369612892277647,
+    "closest_lat": 18.93,
+    "closest_lon": 72.54000091552734,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "10669ebb7-72ff-9327-0918-7d2387b2b454",
+    "mmsi": "636023320",
+    "shipName": "CENTURY ZHENGZHOU",
+    "minimum_distance_km": 5.3702040538350735,
+    "closest_lat": 18.87,
+    "closest_lon": 72.54000091552734,
+    "historical_position_count": 19
+  },
+  {
+    "vesselId": "56417b4fb-b9e6-3376-361f-4f64e0cfffce",
+    "mmsi": "352006614",
+    "shipName": "NOVENA WW",
+    "minimum_distance_km": 5.376401949517429,
+    "closest_lat": 18.91,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 10
+  },
+  {
+    "vesselId": "af29f241d-d88b-fb81-4d22-fd9ef4efbb07",
+    "mmsi": "511101469",
+    "shipName": "ANJANEYA",
+    "minimum_distance_km": 5.376401949517429,
+    "closest_lat": 18.91,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "cca7c015f-f2ba-5d4f-5999-658a8d2a3eb1",
+    "mmsi": "352001712",
+    "shipName": "YUAN HANG WEI YE",
+    "minimum_distance_km": 5.376709488964293,
+    "closest_lat": 18.89,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "7d2be64f6-6ebb-0e53-2ab7-0e6b999ccfda",
+    "mmsi": "419760000",
+    "shipName": "SWARNA KRISHNA",
+    "minimum_distance_km": 5.4534412570197635,
+    "closest_lat": 18.94,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "1efbe3821-1e82-060f-dadf-fd1d7ef19daf",
+    "mmsi": "419000211",
+    "shipName": "P.R.NAYAK",
+    "minimum_distance_km": 5.453877763887506,
+    "closest_lat": 18.86,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 7
+  },
+  {
+    "vesselId": "83434ca02-23e0-82b7-6bb0-d32f5b5408f9",
+    "mmsi": "219974000",
+    "shipName": "JENS MAERSK",
+    "minimum_distance_km": 6.123329705346499,
+    "closest_lat": 18.86,
+    "closest_lon": 72.45999908447266,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "927b6431a-abb6-6f8d-daf2-374d61e82870",
+    "mmsi": "538009130",
+    "shipName": "GENCO MAYFLOWER",
+    "minimum_distance_km": 6.392754182196538,
+    "closest_lat": 18.95,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "87b40cd06-6e4f-8c0b-0737-97b22e98e320",
+    "mmsi": "352005870",
+    "shipName": "JESSICA W",
+    "minimum_distance_km": 6.692421372946358,
+    "closest_lat": 18.88,
+    "closest_lon": 72.55999755859375,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "29b55c2c2-2a09-e818-bff2-50d8775172b3",
+    "mmsi": "636018508",
+    "shipName": "BRIGHT STAR",
+    "minimum_distance_km": 6.995373820943516,
+    "closest_lat": 18.96,
+    "closest_lon": 72.5199966430664,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "706201359-9a85-2031-ff01-18539bb76a22",
+    "mmsi": "636016574",
+    "shipName": "MSC SKY II",
+    "minimum_distance_km": 7.139540477244757,
+    "closest_lat": 18.87,
+    "closest_lon": 72.55999755859375,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "729b7df0d-d6cf-ddef-65cf-aa4eda96bb40",
+    "mmsi": "419067900",
+    "shipName": "AMBUJA LAKSHMI",
+    "minimum_distance_km": 7.65332772558581,
+    "closest_lat": 18.95,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "feed3e96a-aa77-9943-8c62-de8dde7614b2",
+    "mmsi": "311072400",
+    "shipName": "RCC COMPASS",
+    "minimum_distance_km": 7.854474175333093,
+    "closest_lat": 18.83,
+    "closest_lon": 72.51000213623047,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "0c788c104-4ddf-f5e9-a7b5-33710552636d",
+    "mmsi": "636093156",
+    "shipName": "BREMEN EXPRESS",
+    "minimum_distance_km": 8.063020355143562,
+    "closest_lat": 18.83,
+    "closest_lon": 72.5199966430664,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "ecd873c03-327a-fbb9-fb23-78fb473e8234",
+    "mmsi": "419000022",
+    "shipName": "P515T",
+    "minimum_distance_km": 8.411937447005384,
+    "closest_lat": 18.85,
+    "closest_lon": 72.55999755859375,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "97dcbfdfb-b5a1-75bb-9443-1742f6d3bdc9",
+    "mmsi": "419476000",
+    "shipName": "AMBUJA SHAKTI",
+    "minimum_distance_km": 8.411937447005384,
+    "closest_lat": 18.85,
+    "closest_lon": 72.55999755859375,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "b9059c4ad-d427-56f4-1379-7db3c3c4581d",
+    "mmsi": "564024000",
+    "shipName": "BOONYA NAREE",
+    "minimum_distance_km": 8.496608358627713,
+    "closest_lat": 18.84,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "a72bdcb2b-bf9f-2075-a2d1-d6c53abcb985",
+    "mmsi": "311000515",
+    "shipName": "EMPRESS",
+    "minimum_distance_km": 8.848760584293949,
+    "closest_lat": 18.83,
+    "closest_lon": 72.54000091552734,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "bceb38f8f-f880-f079-e73f-afaf40c59fad",
+    "mmsi": "477251400",
+    "shipName": "SC EPIDOTE",
+    "minimum_distance_km": 8.895594131564852,
+    "closest_lat": 18.98,
+    "closest_lon": 72.5,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "421f263d6-6844-5f74-1e4e-de9a4a0219b3",
+    "mmsi": "563071300",
+    "shipName": "X-PRESS KABRU",
+    "minimum_distance_km": 8.895594131564852,
+    "closest_lat": 18.98,
+    "closest_lon": 72.5,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "99bc2e27d-d28b-22d1-04c8-6a655d14029b",
+    "mmsi": "563295900",
+    "shipName": "ONE RECOGNITION",
+    "minimum_distance_km": 8.95763909352665,
+    "closest_lat": 18.82,
+    "closest_lon": 72.48999786376953,
+    "historical_position_count": 5
+  },
+  {
+    "vesselId": "d118eacfc-ca46-7cbd-1262-2655262aac57",
+    "mmsi": "636023185",
+    "shipName": "MSC PAXI II",
+    "minimum_distance_km": 9.438555628110365,
+    "closest_lat": 18.98,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "5b12cbae6-6f1c-1688-2078-996256fbfe90",
+    "mmsi": "636020542",
+    "shipName": "MSC APOLLINE",
+    "minimum_distance_km": 9.439060047709345,
+    "closest_lat": 18.82,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 5
+  },
+  {
+    "vesselId": "df6eafd93-3d2b-4a77-d5e3-0b7ac17cce99",
+    "mmsi": "419002153",
+    "shipName": "CMA CGM SEMARANG",
+    "minimum_distance_km": 9.52008243674335,
+    "closest_lat": 18.86,
+    "closest_lon": 72.58000183105469,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "622cd2112-2530-1c3a-16b4-e8ff4c390a62",
+    "mmsi": "405000199",
+    "shipName": "ZUHAYR",
+    "minimum_distance_km": 10.087818213802818,
+    "closest_lat": 18.85,
+    "closest_lon": 72.58000183105469,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "9db88ea6c-c449-c60d-2eed-a439a200a978",
+    "mmsi": "311000921",
+    "shipName": "CMA CGM HYDRA",
+    "minimum_distance_km": 10.461350407485364,
+    "closest_lat": 18.86,
+    "closest_lon": 72.41000366210938,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "ec354d7c3-340c-5f53-25ae-4b7913130687",
+    "mmsi": "419002016",
+    "shipName": "PROSPER",
+    "minimum_distance_km": 10.493606525621901,
+    "closest_lat": 18.81,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "5e2a81a0c-c769-cbea-97a7-9793cc51b0d0",
+    "mmsi": "636022033",
+    "shipName": "GAS AMMON",
+    "minimum_distance_km": 10.74099827441318,
+    "closest_lat": 18.84,
+    "closest_lon": 72.41999816894531,
+    "historical_position_count": 3
+  },
+  {
+    "vesselId": "0326fb10e-e4cd-a1f6-f307-be00dc99c31a",
+    "mmsi": "419900150",
+    "shipName": "MATSYA VRUSHTI",
+    "minimum_distance_km": 10.908191105361075,
+    "closest_lat": 18.82,
+    "closest_lon": 72.44000244140625,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "668764813-32a7-2e87-7049-848f9bc33410",
+    "mmsi": "419001995",
+    "shipName": "OFFSHORE UNITY",
+    "minimum_distance_km": 11.558917050698463,
+    "closest_lat": 18.8,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "4e3b9080e-e6ae-ad49-992a-30287eaa413c",
+    "mmsi": "419099400",
+    "shipName": "AMBUJA ROHINI",
+    "minimum_distance_km": 11.830785548919751,
+    "closest_lat": 18.99,
+    "closest_lon": 72.55999755859375,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "5a9aaa839-965c-e86b-d6e4-b3a0e86ace70",
+    "mmsi": "414713000",
+    "shipName": "XIN HANG ZHOU",
+    "minimum_distance_km": 11.900025580735713,
+    "closest_lat": 18.85,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "3db88b4c9-91cf-2d22-2f96-c5345a8ac575",
+    "mmsi": "636014968",
+    "shipName": "MARIANETTA",
+    "minimum_distance_km": 12.276588174198098,
+    "closest_lat": 19.01,
+    "closest_lon": 72.51000213623047,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "a9ce37f50-07a7-0efe-62f4-a749a4156a90",
+    "mmsi": "357939000",
+    "shipName": "EVER URBAN",
+    "minimum_distance_km": 12.426099767587585,
+    "closest_lat": 18.81,
+    "closest_lon": 72.56999969482422,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "222dcc590-0b40-ee94-af5d-566f4a11984d",
+    "mmsi": "352006289",
+    "shipName": "HMM LIME",
+    "minimum_distance_km": 12.458649700021791,
+    "closest_lat": 18.84,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "24af58aea-a5d9-15de-96a9-1a136f072a75",
+    "mmsi": "419001685",
+    "shipName": "GREEN BHAVISHYA",
+    "minimum_distance_km": 12.632268640087208,
+    "closest_lat": 18.79,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "49134bb44-4b3c-7594-be66-a75151aff072",
+    "mmsi": "419753000",
+    "shipName": "SWARNA BRAHMAPUTRA",
+    "minimum_distance_km": 13.778650865883733,
+    "closest_lat": 18.82,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 7
+  },
+  {
+    "vesselId": "93852879a-a5d1-b300-e3d8-fc852e96fe43",
+    "mmsi": "750999000",
+    "shipName": "FLORA",
+    "minimum_distance_km": 13.796039077265057,
+    "closest_lat": 18.85,
+    "closest_lon": 72.62000274658203,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "005bbf17e-eb97-2e87-69aa-76a9620e8adc",
+    "mmsi": "538006037",
+    "shipName": "STI ROSE",
+    "minimum_distance_km": 14.075475719643272,
+    "closest_lat": 18.93,
+    "closest_lon": 72.62999725341797,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "9800f7897-75fd-ef61-1939-e2b10c1c13d4",
+    "mmsi": "419001592",
+    "shipName": "PAMBOOR 2",
+    "minimum_distance_km": 14.075475719643272,
+    "closest_lat": 18.93,
+    "closest_lon": 72.62999725341797,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "37b0e4933-33c8-aeb1-0276-e3cc30f8ca22",
+    "mmsi": "419000596",
+    "shipName": "SVITZER ECHO",
+    "minimum_distance_km": 14.521609535250873,
+    "closest_lat": 18.81,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "464747524-4f6b-6f30-4c10-75bb8bb11613",
+    "mmsi": "563328200",
+    "shipName": "INTERASIA AMBITION",
+    "minimum_distance_km": 14.598216173571638,
+    "closest_lat": 18.82,
+    "closest_lon": 72.61000061035156,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "a5e22f478-8003-1227-297d-f7cf1802bad3",
+    "mmsi": "314248000",
+    "shipName": "ORFA",
+    "minimum_distance_km": 14.894006465906157,
+    "closest_lat": 18.92,
+    "closest_lon": 72.63999938964844,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "9b85b6d3a-a6e4-64ac-1818-cda7f1511d11",
+    "mmsi": "357787000",
+    "shipName": "MYD TIANJIN",
+    "minimum_distance_km": 16.051024665017398,
+    "closest_lat": 18.8,
+    "closest_lon": 72.61000061035156,
+    "historical_position_count": 17
+  },
+  {
+    "vesselId": "cd38b43ff-f071-8a9a-1472-5364fa69b1fb",
+    "mmsi": "352001196",
+    "shipName": "BRIGHT ELEGANCE",
+    "minimum_distance_km": 16.051024665017398,
+    "closest_lat": 18.8,
+    "closest_lon": 72.61000061035156,
+    "historical_position_count": 8
+  },
+  {
+    "vesselId": "690fc7da9-9875-b844-3327-13601dc4eaff",
+    "mmsi": "419001831",
+    "shipName": "HARI PRIYA",
+    "minimum_distance_km": 16.135289628628197,
+    "closest_lat": 18.79,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 6
+  },
+  {
+    "vesselId": "177120d37-79b9-b25d-fe12-8a1ae8c87a66",
+    "mmsi": "412043140",
+    "shipName": "SHAN BANG",
+    "minimum_distance_km": 16.135289628628197,
+    "closest_lat": 18.79,
+    "closest_lon": 72.5999984741211,
+    "historical_position_count": 9
+  },
+  {
+    "vesselId": "d31fbe87c-cf13-721e-01c3-03c3dbe02526",
+    "mmsi": "419000781",
+    "shipName": "CG 241",
+    "minimum_distance_km": 17.13515834512181,
+    "closest_lat": 18.84,
+    "closest_lon": 72.6500015258789,
+    "historical_position_count": 1
+  },
+  {
+    "vesselId": "05f033376-6508-1dc0-f0e4-4bfbed717136",
+    "mmsi": "419001673",
+    "shipName": "BW TYR",
+    "minimum_distance_km": 17.488369514669525,
+    "closest_lat": 19.05,
+    "closest_lon": 72.55000305175781,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "d23dda9fe-ef80-9a02-ca4d-65788ce2dcf4",
+    "mmsi": "352002215",
+    "shipName": "AN YANG",
+    "minimum_distance_km": 17.580815453677467,
+    "closest_lat": 18.79,
+    "closest_lon": 72.62000274658203,
+    "historical_position_count": 16
+  },
+  {
+    "vesselId": "a452d2e15-52c0-bb26-7bde-1e69abfd18cf",
+    "mmsi": "438031044",
+    "shipName": "AL-MOTHANNA",
+    "minimum_distance_km": 17.665058976266142,
+    "closest_lat": 18.78,
+    "closest_lon": 72.61000061035156,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "9e06e47fa-ac76-94ce-3b00-621e225fbece",
+    "mmsi": "311001828",
+    "shipName": "BAMSI BEYREK",
+    "minimum_distance_km": 17.791188263129353,
+    "closest_lat": 18.74,
+    "closest_lon": 72.5,
+    "historical_position_count": 9
+  },
+  {
+    "vesselId": "40f0b2ad3-3f58-60ec-dba3-01a42d0f5569",
+    "mmsi": "438031045",
+    "shipName": "AL-HADBAA",
+    "minimum_distance_km": 18.22226281040819,
+    "closest_lat": 18.76,
+    "closest_lon": 72.58999633789062,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "b2deb1b37-780c-8d2e-fad0-cf712e0c89de",
+    "mmsi": "563283100",
+    "shipName": "NAVIG8 GUARD",
+    "minimum_distance_km": 18.548102145533818,
+    "closest_lat": 18.83,
+    "closest_lon": 72.66000366210938,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "53cb571a1-1110-df23-5b39-4a3f357517a9",
+    "mmsi": "419002009",
+    "shipName": "GREEN SACHI",
+    "minimum_distance_km": 19.16449756294188,
+    "closest_lat": 19.07,
+    "closest_lon": 72.52999877929688,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "754e833fc-c04a-16eb-951f-709bb075e230",
+    "mmsi": "255915779",
+    "shipName": "ESL NINGBO",
+    "minimum_distance_km": 19.195122751908592,
+    "closest_lat": 18.77,
+    "closest_lon": 72.62000274658203,
+    "historical_position_count": 17
+  },
+  {
+    "vesselId": "3ae293ac9-9603-6a02-19d0-64730272bcd6",
+    "mmsi": "352004944",
+    "shipName": "GUO FU MIN QIANG",
+    "minimum_distance_km": 19.308148661142244,
+    "closest_lat": 18.8,
+    "closest_lon": 72.6500015258789,
+    "historical_position_count": 18
+  },
+  {
+    "vesselId": "4e22381ec-c7b0-bb6a-e1e1-c06d1bb94c3a",
+    "mmsi": "419000648",
+    "shipName": "GREATSHIP RACHNA",
+    "minimum_distance_km": 19.36632601739289,
+    "closest_lat": 18.73,
+    "closest_lon": 72.45999908447266,
+    "historical_position_count": 4
+  },
+  {
+    "vesselId": "4d9031480-08de-2652-bdd2-a297d6de7dbe",
+    "mmsi": "563124200",
+    "shipName": "WAN HAI 326",
+    "minimum_distance_km": 19.400120179118122,
+    "closest_lat": 18.76,
+    "closest_lon": 72.61000061035156,
+    "historical_position_count": 10
+  },
+  {
+    "vesselId": "8bc9513fc-c172-1f21-cf0c-2c14acb5ca13",
+    "mmsi": "419001800",
+    "shipName": "SAMARTH",
+    "minimum_distance_km": 19.507655827381598,
+    "closest_lat": 18.83,
+    "closest_lon": 72.33000183105469,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "28982bbf3-3dae-b218-6ffd-bdc8d94a84fd",
+    "mmsi": "563046100",
+    "shipName": "HODAKA GALAXY",
+    "minimum_distance_km": 19.87744825249893,
+    "closest_lat": 18.78,
+    "closest_lon": 72.63999938964844,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "279d0510e-e538-2ad1-c7cf-fdff96c415a6",
+    "mmsi": "636025577",
+    "shipName": "ADMAR",
+    "minimum_distance_km": 20.046093356108145,
+    "closest_lat": 18.76,
+    "closest_lon": 72.62000274658203,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "9feb7f7e6-61fd-2b49-a380-513fc4e1d69d",
+    "mmsi": "636015337",
+    "shipName": "HIGH TIDE",
+    "minimum_distance_km": 20.921563979027727,
+    "closest_lat": 18.75,
+    "closest_lon": 72.62000274658203,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "879ed3d06-6b67-3b5e-62bb-2264f1b05eac",
+    "mmsi": "419001534",
+    "shipName": "SHAKTI-  -",
+    "minimum_distance_km": 21.484353238766904,
+    "closest_lat": 18.78,
+    "closest_lon": 72.66000366210938,
+    "historical_position_count": 24
+  },
+  {
+    "vesselId": "3ca51af5b-b194-f5fa-85cd-23c15cb1bb5c",
+    "mmsi": "419001415",
+    "shipName": "GREATSHIP ADITI",
+    "minimum_distance_km": 22.171181170502333,
+    "closest_lat": 18.76,
+    "closest_lon": 72.3499984741211,
+    "historical_position_count": 2
+  },
+  {
+    "vesselId": "34a022ac8-82c7-7d73-a218-f1d07b85c752",
+    "mmsi": "69010",
+    "shipName": "",
+    "minimum_distance_km": 24.519631263022898,
+    "closest_lat": 18.76,
+    "closest_lon": 72.31999969482422,
+    "historical_position_count": 2
+  }
+]

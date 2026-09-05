@@ -1,0 +1,16 @@
+# Vercel Ignore List
+.venv/
+__pycache__/
+*.pyc
+artifacts/checkpoints/*.pt
+artifacts/checkpoints/*.pth
+data/extracted/
+data/raw/
+data/processed/
+output/
+.pytest_cache/
+.vscode/
+.tools/
+*.zip
+*.tif
+*.tiff

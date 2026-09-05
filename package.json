@@ -1,0 +1,19 @@
+{
+  "name": "aegis-sar-frontend",
+  "version": "1.0.0",
+  "description": "Integrated Sentinel-1 SAR Oil Spill Detection & AIS Vessel Correlation Web Application",
+  "private": true,
+  "scripts": {
+    "start": "npx serve public"
+  },
+  "keywords": [
+    "sar",
+    "sentinel-1",
+    "oil-spill-detection",
+    "ais-vessel-tracking",
+    "deep-learning",
+    "geospatial"
+  ],
+  "author": "AEGIS-SAR Team",
+  "license": "MIT"
+}
