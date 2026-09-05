@@ -79,26 +79,28 @@ class OilSpillPredictor:
             _MODEL_CACHE[cache_key] = self.model
             _VERSION_CACHE[cache_key] = self.model_version
 
-    @torch.no_grad()
-    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 8) -> List[np.ndarray]:
+    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 4) -> List[np.ndarray]:
         """
         Run batched neural network inference on extracted patches.
-        Strictly inference-only: no gradient tracking or optimizer updates.
+        Strictly inference-only: minimal memory allocation.
         """
         self.model.eval()
         predictions = []
         
-        for i in range(0, len(patches), batch_size):
-            batch_np = np.stack(patches[i:i + batch_size], axis=0)  # (B, H, W)
-            batch_tensor = torch.from_numpy(batch_np).unsqueeze(1).to(self.device, dtype=torch.float32)  # (B, 1, H, W)
-            
-            probs = self.model.predict_probability(batch_tensor)  # (B, 1, H, W)
-            probs_np = probs.squeeze(1).cpu().numpy()  # (B, H, W)
+        with torch.inference_mode():
+            for i in range(0, len(patches), batch_size):
+                batch_np = np.stack(patches[i:i + batch_size], axis=0)  # (B, H, W)
+                batch_tensor = torch.from_numpy(batch_np).unsqueeze(1).to(self.device, dtype=torch.float32)  # (B, 1, H, W)
+                
+                probs = self.model.predict_probability(batch_tensor)  # (B, 1, H, W)
+                probs_np = probs.squeeze(1).cpu().numpy()  # (B, H, W)
 
-            if probs_np.ndim == 2:
-                probs_np = np.expand_dims(probs_np, axis=0)
-            for j in range(probs_np.shape[0]):
-                predictions.append(probs_np[j])
+                if probs_np.ndim == 2:
+                    probs_np = np.expand_dims(probs_np, axis=0)
+                for j in range(probs_np.shape[0]):
+                    predictions.append(probs_np[j])
+
+                del batch_tensor, probs, probs_np
 
         return predictions
 
@@ -121,7 +123,9 @@ class OilSpillPredictor:
         logger.info(f"Extracted {len(tiles)} patches ({self.patch_size}x{self.patch_size}, overlap={self.overlap}) for inference.")
 
         # 2. Run inference on patches
-        predicted_patches = self.predict_patches(raw_patches)
+        predicted_patches = self.predict_patches(raw_patches, batch_size=4)
+        del raw_patches
+        gc.collect()
 
         # 3. Reconstruct full scene probability map with distance blending
         prob_map = self.stitcher.stitch_patches(
@@ -132,6 +136,8 @@ class OilSpillPredictor:
             padded_h=padded_h,
             padded_w=padded_w,
         )
+        del predicted_patches, tiles
+        gc.collect()
 
         logger.info(f"Full-scene probability map generated (shape: {prob_map.shape}, min={prob_map.min():.3f}, max={prob_map.max():.3f})")
         return prob_map
