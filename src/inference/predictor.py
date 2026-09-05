@@ -4,6 +4,7 @@ Strictly inference-only deployment pipeline.
 Loads versioned ConvNeXt-Tiny + U-Net model artifacts, applies sliding-window tiled inference,
 and reconstructs seamless full-scene probability maps.
 """
+import cv2
 import gc
 import json
 from pathlib import Path
@@ -114,40 +115,60 @@ class OilSpillPredictor:
 
         return predictions
 
-    def predict_scene(self, preprocessed_img: np.ndarray) -> np.ndarray:
+    def predict_scene(self, preprocessed_img: np.ndarray, max_dim: int = 768) -> np.ndarray:
         """
         Run full tiled sliding-window inference on a preprocessed full SAR scene.
+        Adaptively scales high-resolution satellite scenes to ensure rapid online inference.
         
         Args:
             preprocessed_img: 2D normalized SAR backscatter array (float32 in [0, 1]).
+            max_dim: Maximum canvas dimension for sliding-window tiled inference.
             
         Returns:
             Reconstructed full-scene probability map (float32 in [0.0, 1.0]).
         """
         H, W = preprocessed_img.shape[:2]
-        padded_h, padded_w, _, _ = self.tiler.get_patch_grid_dimensions(H, W)
+        
+        # Adaptive scaling for high-resolution satellite scenes
+        if max(H, W) > max_dim:
+            scale = max_dim / float(max(H, W))
+            scaled_h, scaled_w = int(round(H * scale)), int(round(W * scale))
+            scaled_img = cv2.resize(preprocessed_img, (scaled_w, scaled_h), interpolation=cv2.INTER_AREA)
+        else:
+            scaled_img = preprocessed_img
+            scaled_h, scaled_w = H, W
+
+        padded_h, padded_w, _, _ = self.tiler.get_patch_grid_dimensions(scaled_h, scaled_w)
 
         # 1. Extract sliding-window tiles
-        tiles = list(self.tiler.extract_patches(preprocessed_img))
+        tiles = list(self.tiler.extract_patches(scaled_img))
         raw_patches = [t.patch for t in tiles]
-        logger.info(f"Extracted {len(tiles)} patches ({self.patch_size}x{self.patch_size}, overlap={self.overlap}) for inference.")
+        logger.info(f"Extracted {len(tiles)} patches ({self.patch_size}x{self.patch_size}, overlap={self.overlap}) for inference on {scaled_h}x{scaled_w} canvas.")
 
         # 2. Run inference on patches with batch_size=1 for lowest possible memory footprint
         predicted_patches = self.predict_patches(raw_patches, batch_size=1)
         del raw_patches
         gc.collect()
 
-        # 3. Reconstruct full scene probability map with distance blending
-        prob_map = self.stitcher.stitch_patches(
+        # 3. Reconstruct probability map with distance blending
+        prob_map_scaled = self.stitcher.stitch_patches(
             predicted_patches=predicted_patches,
             tiles=tiles,
-            orig_h=H,
-            orig_w=W,
+            orig_h=scaled_h,
+            orig_w=scaled_w,
             padded_h=padded_h,
             padded_w=padded_w,
         )
         del predicted_patches, tiles
         gc.collect()
+
+        # 4. Upsample back to original scene dimensions if scaled
+        if (scaled_h, scaled_w) != (H, W):
+            prob_map = cv2.resize(prob_map_scaled, (W, H), interpolation=cv2.INTER_LINEAR)
+            del prob_map_scaled
+            gc.collect()
+        else:
+            prob_map = prob_map_scaled
 
         logger.info(f"Full-scene probability map generated (shape: {prob_map.shape}, min={prob_map.min():.3f}, max={prob_map.max():.3f})")
         return prob_map
