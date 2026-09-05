@@ -50,8 +50,8 @@ RUN mkdir -p /app/output /app/data/outputs /app/data/processed /app/data/extract
 EXPOSE 8000
 
 # Container healthcheck using Render PORT fallback
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+HEALTHCHECK --interval=60s --timeout=15s --start-period=60s --retries=5 \
     CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
 
 # Start FastAPI production server binding to 0.0.0.0 and dynamic Render $PORT
-CMD ["sh", "-c", "uvicorn src.api.app:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1"]
+CMD ["sh", "-c", "uvicorn src.api.app:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1 --timeout-keep-alive 120"]

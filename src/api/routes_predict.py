@@ -3,6 +3,7 @@ Production Prediction & Inference API Router.
 Handles satellite image upload, metadata parsing, and sequential execution:
   SAR Deep Learning Detector -> Adapter -> AIS Vessel Correlator -> Incident Report.
 """
+import asyncio
 import base64
 import gc
 import json
@@ -189,7 +190,8 @@ async def run_prediction_pipeline(
         out_dir = temp_dir / "output"
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        report: EndToEndIncidentReport = pipeline.run(
+        report: EndToEndIncidentReport = await asyncio.to_thread(
+            pipeline.run,
             image_path=temp_input_path,
             metadata=meta_dict if meta_dict else None,
             output_dir=out_dir,
