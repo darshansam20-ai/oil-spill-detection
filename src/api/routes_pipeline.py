@@ -5,11 +5,10 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel
 
-from src.worker.queue_worker import PipelineWorker
+from src.worker.queue_worker import get_pipeline_worker
 from src.storage.repository import repo
 
 router = APIRouter(prefix="/api/pipeline", tags=["Pipeline"])
-pipeline_worker = PipelineWorker()
 
 
 class ProcessSceneRequest(BaseModel):
@@ -25,7 +24,7 @@ def trigger_scene_processing(req: ProcessSceneRequest, background_tasks: Backgro
         raise HTTPException(status_code=404, detail=f"Scene '{req.scene_id}' not found.")
 
     # Execute synchronously or in background
-    res = pipeline_worker.process_scene(scene_id=req.scene_id, force=req.force)
+    res = get_pipeline_worker().process_scene(scene_id=req.scene_id, force=req.force)
     return res
 
 

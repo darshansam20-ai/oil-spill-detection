@@ -155,13 +155,31 @@ class PipelineWorker:
             }
 
 
+_pipeline_worker_instance: Optional[PipelineWorker] = None
+
+
+def get_pipeline_worker() -> PipelineWorker:
+    """Lazy initialization of PipelineWorker singleton."""
+    global _pipeline_worker_instance
+    if _pipeline_worker_instance is None:
+        _pipeline_worker_instance = PipelineWorker()
+    return _pipeline_worker_instance
+
+
 class AsyncSceneWorkerPool:
     """Multi-threaded background worker pool for concurrent scene processing."""
 
     def __init__(self, max_workers: int = 2):
         self.executor = ThreadPoolExecutor(max_workers=max_workers)
-        self.worker = PipelineWorker()
+        self._worker: Optional[PipelineWorker] = None
+
+    @property
+    def worker(self) -> PipelineWorker:
+        if self._worker is None:
+            self._worker = get_pipeline_worker()
+        return self._worker
 
     def submit_scene_job(self, scene_id: str, force: bool = False):
         """Submit scene processing job to background pool."""
         return self.executor.submit(self.worker.process_scene, scene_id, force)
+

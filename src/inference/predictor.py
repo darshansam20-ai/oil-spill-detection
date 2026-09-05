@@ -4,9 +4,10 @@ Strictly inference-only deployment pipeline.
 Loads versioned ConvNeXt-Tiny + U-Net model artifacts, applies sliding-window tiled inference,
 and reconstructs seamless full-scene probability maps.
 """
+import gc
 import json
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 import numpy as np
 import torch
 
@@ -20,6 +21,10 @@ from src.utils.device import get_default_device
 from src.utils.logger import get_logger
 
 logger = get_logger("inference.predictor")
+
+# Global in-memory cache to ensure the model weights are loaded only ONCE in RAM
+_MODEL_CACHE: Dict[Tuple[str, str], torch.nn.Module] = {}
+_VERSION_CACHE: Dict[Tuple[str, str], str] = {}
 
 
 class OilSpillPredictor:
@@ -40,21 +45,39 @@ class OilSpillPredictor:
         self.stitcher = PatchStitcher(patch_size=patch_size, blend_window="gaussian")
         self.preprocessor = SARPreprocessor()
 
-        # Load Model
-        self.checkpoint_path = checkpoint_path or (settings.paths.checkpoints_dir / "best_model.pt")
-        self.model = ConvNeXtTinyUNet(in_channels=1, num_classes=1, pretrained=False)
-        self.model_version = CURRENT_MODEL_VERSION
+        # Load Model with memory-efficient shared cache
+        self.checkpoint_path = Path(checkpoint_path) if checkpoint_path else (settings.paths.checkpoints_dir / "best_model.pt")
+        cache_key = (str(self.checkpoint_path.resolve()), str(self.device))
 
-        if self.checkpoint_path.exists():
-            logger.info(f"Loading trained weights from checkpoint: {self.checkpoint_path}")
-            checkpoint = torch.load(self.checkpoint_path, map_location="cpu")
-            self.model.load_state_dict(checkpoint["model_state_dict"])
-            self.model_version = checkpoint.get("model_version", CURRENT_MODEL_VERSION)
+        if cache_key in _MODEL_CACHE:
+            self.model = _MODEL_CACHE[cache_key]
+            self.model_version = _VERSION_CACHE.get(cache_key, CURRENT_MODEL_VERSION)
         else:
-            logger.warning(f"Checkpoint not found at {self.checkpoint_path}. Initializing default model weights.")
+            self.model = ConvNeXtTinyUNet(in_channels=1, num_classes=1, pretrained=False)
+            self.model_version = CURRENT_MODEL_VERSION
 
-        self.model.to(self.device)
-        self.model.eval()
+            if self.checkpoint_path.exists():
+                logger.info(f"Loading trained weights from checkpoint: {self.checkpoint_path}")
+                try:
+                    checkpoint = torch.load(self.checkpoint_path, map_location="cpu", mmap=True)
+                except Exception:
+                    checkpoint = torch.load(self.checkpoint_path, map_location="cpu")
+                
+                state_dict = checkpoint.get("model_state_dict", checkpoint) if isinstance(checkpoint, dict) else checkpoint
+                self.model.load_state_dict(state_dict)
+                if isinstance(checkpoint, dict):
+                    self.model_version = checkpoint.get("model_version", CURRENT_MODEL_VERSION)
+                
+                del checkpoint
+                del state_dict
+                gc.collect()
+            else:
+                logger.warning(f"Checkpoint not found at {self.checkpoint_path}. Initializing default model weights.")
+
+            self.model.to(self.device)
+            self.model.eval()
+            _MODEL_CACHE[cache_key] = self.model
+            _VERSION_CACHE[cache_key] = self.model_version
 
     @torch.no_grad()
     def predict_patches(self, patches: List[np.ndarray], batch_size: int = 8) -> List[np.ndarray]:

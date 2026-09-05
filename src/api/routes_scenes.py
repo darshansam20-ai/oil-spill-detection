@@ -14,11 +14,10 @@ from src.config.settings import settings
 from src.storage.models import SatelliteScene
 from src.storage.repository import repo
 from src.ingestion.stac_client import STACDiscoveryClient
-from src.worker.queue_worker import PipelineWorker
+from src.worker.queue_worker import get_pipeline_worker
 
 router = APIRouter(prefix="/api/scenes", tags=["Scenes"])
 stac_client = STACDiscoveryClient()
-pipeline_worker = PipelineWorker()
 
 
 class IngestLocalSceneRequest(BaseModel):
@@ -101,9 +100,10 @@ async def upload_and_analyze_image(
     repo.create_or_update_scene(scene)
 
     # Run the full pipeline with requested threshold
+    worker = get_pipeline_worker()
     if threshold is not None:
-        pipeline_worker.postprocessor.threshold = float(threshold)
-        pipeline_worker.geospatializer.threshold = float(threshold)
+        worker.postprocessor.threshold = float(threshold)
+        worker.geospatializer.threshold = float(threshold)
 
-    result = pipeline_worker.process_scene(scene_id=scene_id, force=True)
+    result = worker.process_scene(scene_id=scene_id, force=True)
     return result
