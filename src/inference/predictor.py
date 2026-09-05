@@ -36,6 +36,7 @@ class OilSpillPredictor:
         patch_size: int = 256,
         overlap: int = 64,
         device: Optional[str] = None,
+        use_bfloat16: bool = True,
     ):
         # Constrain PyTorch CPU threads to avoid memory fragmentation on container hosts
         try:
@@ -46,6 +47,7 @@ class OilSpillPredictor:
         self.patch_size = patch_size
         self.overlap = overlap
         self.device = torch.device(device) if device else get_default_device()
+        self.dtype = torch.bfloat16 if (use_bfloat16 and self.device.type == "cpu") else torch.float32
         
         self.tiler = ImageTiler(patch_size=patch_size, overlap=overlap)
         self.stitcher = PatchStitcher(patch_size=patch_size, blend_window="gaussian")
@@ -53,7 +55,7 @@ class OilSpillPredictor:
 
         # Load Model with memory-efficient shared cache
         self.checkpoint_path = Path(checkpoint_path) if checkpoint_path else (settings.paths.checkpoints_dir / "best_model.pt")
-        cache_key = (str(self.checkpoint_path.resolve()), str(self.device))
+        cache_key = (str(self.checkpoint_path.resolve()), str(self.device), str(self.dtype))
 
         if cache_key in _MODEL_CACHE:
             self.model = _MODEL_CACHE[cache_key]
@@ -80,15 +82,18 @@ class OilSpillPredictor:
             else:
                 logger.warning(f"Checkpoint not found at {self.checkpoint_path}. Initializing default model weights.")
 
+            # Convert to target precision and device
+            if self.dtype == torch.bfloat16:
+                self.model = self.model.to(torch.bfloat16)
             self.model.to(self.device)
             self.model.eval()
             _MODEL_CACHE[cache_key] = self.model
             _VERSION_CACHE[cache_key] = self.model_version
 
-    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 2) -> List[np.ndarray]:
+    def predict_patches(self, patches: List[np.ndarray], batch_size: int = 1) -> List[np.ndarray]:
         """
         Run batched neural network inference on extracted patches.
-        Strictly inference-only: minimal memory allocation.
+        Strictly inference-only: minimal memory allocation with bfloat16.
         """
         self.model.eval()
         predictions = []
@@ -96,10 +101,10 @@ class OilSpillPredictor:
         with torch.inference_mode():
             for i in range(0, len(patches), batch_size):
                 batch_np = np.stack(patches[i:i + batch_size], axis=0)  # (B, H, W)
-                batch_tensor = torch.from_numpy(batch_np).unsqueeze(1).to(self.device, dtype=torch.float32)  # (B, 1, H, W)
+                batch_tensor = torch.from_numpy(batch_np).unsqueeze(1).to(self.device, dtype=self.dtype)  # (B, 1, H, W)
                 
                 probs = self.model.predict_probability(batch_tensor)  # (B, 1, H, W)
-                probs_np = probs.squeeze(1).cpu().numpy()  # (B, H, W)
+                probs_np = probs.squeeze(1).float().cpu().numpy()  # (B, H, W)
 
                 if probs_np.ndim == 2:
                     probs_np = np.expand_dims(probs_np, axis=0)
@@ -128,8 +133,8 @@ class OilSpillPredictor:
         raw_patches = [t.patch for t in tiles]
         logger.info(f"Extracted {len(tiles)} patches ({self.patch_size}x{self.patch_size}, overlap={self.overlap}) for inference.")
 
-        # 2. Run inference on patches with batch_size=2 for low memory overhead
-        predicted_patches = self.predict_patches(raw_patches, batch_size=2)
+        # 2. Run inference on patches with batch_size=1 for lowest possible memory footprint
+        predicted_patches = self.predict_patches(raw_patches, batch_size=1)
         del raw_patches
         gc.collect()
 

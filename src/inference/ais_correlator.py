@@ -235,7 +235,7 @@ class AISCorrelator:
         token: Optional[str] = None,
         search_radius_km: float = 20.0,
         sample_data_dir: Optional[Union[str, Path]] = None,
-        api_timeout: int = 6,
+        api_timeout: int = 4,
     ):
         self.token = token or os.getenv("GFW_TOKEN") or DEFAULT_GFW_TOKEN
         self.search_radius_km = search_radius_km
